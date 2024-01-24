@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bad Message Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bad Message Detector</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a> |
+        <a href="#login">Login</a>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to Bad Message Detector</h2>
+        <p>Use our service to detect and filter out bad messages.</p>
+        <p>Features:</p>
+        <ul>
+            <li>Attribute 1</li>
+            <li>Attribute 2</li>
+            <li>Attribute 3</li>
+            <!-- Add up to 5 more attributes -->
+        </ul>
+    </section>
+
+    <section id="login">
+        <h2>Login</h2>
+        <form action="#" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2024 Bad Message Detector. All rights reserved.
+    </footer>
+
+</body>
+</html>
