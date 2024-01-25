@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Reader</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" accept="bad-words.csv">
+<div id="tableContainer"></div>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', handleFile);
+
+    function handleFile(event) {
+        const file = event.target.files[0];
+
+        if (file && file.type === 'text/csv') {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const csvData = e.target.result;
+                displayTable(parseCSV(csvData));
+            };
+
+            reader.readAsText(file);
+        } else {
+            alert('Please select a valid CSV file.');
+        }
+    }
+
+    function parseCSV(csvData) {
+        const lines = csvData.split('\n');
+        const headers = lines[0].split(',');
+
+        const data = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',');
+            if (values.length === headers.length) {
+                const row = {};
+                for (let j = 0; j < headers.length; j++) {
+                    row[headers[j]] = values[j];
+                }
+                data.push(row);
+            }
+        }
+
+        return data;
+    }
+
+    function displayTable(data) {
+        const tableContainer = document.getElementById('tableContainer');
+        tableContainer.innerHTML = '';
+
+        if (data.length > 0) {
+            const table = document.createElement('table');
+            const headerRow = table.insertRow(0);
+
+            // Create table headers
+            for (let key in data[0]) {
+                if (data[0].hasOwnProperty(key)) {
+                    const th = document.createElement('th');
+                    th.textContent = key;
+                    headerRow.appendChild(th);
+                }
+            }
+
+            // Create table rows
+            for (let i = 0; i < data.length; i++) {
+                const row = table.insertRow(i + 1);
+
+                for (let key in data[i]) {
+                    if (data[i].hasOwnProperty(key)) {
+                        const cell = row.insertCell(-1);
+                        cell.textContent = data[i][key];
+                    }
+                }
+            }
+
+            tableContainer.appendChild(table);
+        } else {
+            tableContainer.textContent = 'No data to display.';
+        }
+    }
+</script>
+
+</body>
+</html>
